@@ -1,6 +1,6 @@
 import Category from './category.model';
 
-export async function createCategoty(req, res){
+export async function createCategory(req, res){
 	try{
 		const categoty = await Category.createCategory(res.body);
 		return res.status(201).json(categoty);
