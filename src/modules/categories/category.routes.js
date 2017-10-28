@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import * as categoryController from './category.controller';
+import * as categoryController from './category.controllers';
 import { authJwt } from '../../services/auth.services';
 import validate from 'express-validation';
 import categoryValidation from './category.validation';
