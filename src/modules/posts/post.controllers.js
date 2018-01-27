@@ -6,16 +6,16 @@ export async function createPost(req, res){
 		const post = await Post.createPost(res.body);
 		return res.status(HTTPStatus.CREATED).json(post);
 	}catch(e){
-		return res.status(400).json(e);
+		return res.status(HTTPStatus.EXPECTATION_FAILED).json(e);
 	}
 }
 
 export async function getPostById(req, res){
 	try{
 		const post = await Post.findById(req.params.id);
-		return res.status(201).json(post);
+		return res.status(HTTPStatus.OK).json(post);
 	}catch(e){
-		return res.status(400).json(e);
+		return res.status(HTTPStatus.EXPECTATION_FAILED).json(e);
 	}
 }
 
@@ -24,9 +24,9 @@ export async function getPostsList(req, res){
 	const skip = parseInt(req.query.skip,0);
 	try{
 		const posts = await Post.list({skip, limit});
-		return res.status(201).json(posts);
+		return res.status(HTTPStatus.OK).json(posts);
 	}catch(e){
-		return res.status(400).json(e);
+		return res.status(HTTPStatus.EXPECTATION_FAILED).json(e);
 	}
 }
 
@@ -42,7 +42,7 @@ export async function updatePost(req, res){
 		}); //Object to array
 		return res.status(HTTPStatus.OK).json(await post.save()); //Persist in the database
 	}catch(e){
-		return res.status(400).json(e);
+		return res.status(HTTPStatus.EXPECTATION_FAILED).json(e);
 	}
 }
 
@@ -56,6 +56,6 @@ export async function removePostById(req, res){
 		await post.remove();
 		return res.sendStatus(HTTPStatus.OK);
 	}catch(e){
-		return res.status(400).json(e);
+		return res.status(HTTPStatus.EXPECTATION_FAILED).json(e);
 	}
 }

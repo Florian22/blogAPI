@@ -6,8 +6,8 @@ import postValidation from './post.validation';
 
 const routes = new Router();
 routes.post('/', authJwt, validate(postValidation.createPost),postController.createPost);
-routes.get('/:id',plantController.getPostById );
-routes.get('/', plantController.getPostsList);
+routes.get('/:id',postController.getPostById );
+routes.get('/', postController.getPostsList);
 routes.patch('/:id', authJwt, validate(postValidation.updatePost),postController.updatePost);
 routes.delete('/:id', authJwt, postController.removePostById);
 

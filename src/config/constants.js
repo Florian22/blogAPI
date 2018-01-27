@@ -1,5 +1,5 @@
 const devConfig = {
-	MONGO_URL: 'mongodb://localhost/growthapi-dev',
+	MONGO_URL: 'mongodb://localhost/blogAPI-dev',
 	JWT_SECRET: 'secretfordev',
 };
 
