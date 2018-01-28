@@ -2,8 +2,9 @@ import Post from './post.model';
 import HTTPStatus from 'http-status';
 
 export async function createPost(req, res){
+	console.log(req.body);
 	try{
-		const post = await Post.createPost(res.body);
+		const post = await Post.createPost(req.body);
 		return res.status(HTTPStatus.CREATED).json(post);
 	}catch(e){
 		return res.status(HTTPStatus.EXPECTATION_FAILED).json(e);

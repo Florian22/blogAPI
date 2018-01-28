@@ -10,7 +10,6 @@ export async function signUp(req, res) {
 }
 
 export function login(req,res,next){
-	console.log("test");
 	res.status(200).json(req.user);
 	return next();
 }

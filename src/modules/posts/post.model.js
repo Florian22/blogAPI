@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 import slug from 'slug';
-import uniqueValidator from 'mongoose-unique-validator'
+import uniqueValidator from 'mongoose-unique-validator';
 
 import constants from '../../config/constants';
 
@@ -41,7 +41,7 @@ PostSchema.pre('validate', function(next){
 
 PostSchema.methods = {
   _slugify(){
-    this.slug = slug(this.name);
+    this.slug = slug(this.title);
   },
 	toJSON(){
     return {
