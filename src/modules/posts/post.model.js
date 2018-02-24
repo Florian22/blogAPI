@@ -57,9 +57,10 @@ PostSchema.methods = {
 	};
 
 PostSchema.statics = {
-  createPost(args){
+  createPost(args, user){
     return this.create({
       ...args,
+      user,
     });
   },
   list({skip = 0, limit = 25} = {}){

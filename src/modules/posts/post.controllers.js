@@ -4,7 +4,7 @@ import HTTPStatus from 'http-status';
 export async function createPost(req, res){
 	console.log(req.body);
 	try{
-		const post = await Post.createPost(req.body);
+		const post = await Post.createPost(req.body, req.user._id);
 		return res.status(HTTPStatus.CREATED).json(post);
 	}catch(e){
 		return res.status(HTTPStatus.EXPECTATION_FAILED).json(e);
