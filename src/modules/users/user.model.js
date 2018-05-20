@@ -46,6 +46,10 @@ const UserSchema = new Schema({
       message: '{VALUE} is not a valid password!',
     },
   },
+  picture: {
+    type: String,
+    trim: true,
+  },
 },{timestamps:true});
 
 UserSchema.pre('save', function (next){
@@ -75,9 +79,21 @@ UserSchema.methods = {
   }, //one } missing ?
   toJSON(){
     return {
+      username: this.userName,
+      firstname: this.firstName,
+      lastname: this.lastname,
+      email: this.email,
+      picture: this.picture,
+    };
+  },
+  toAuthJSON(){
+    return {
       _id: this._id,
       userName: this.userName,
+      firstname: this.firstName,
+      lastname: this.lastname,
       email: this.email,
+      picture: this.picture,
       token: `Bearer ${this.createToken()}`,
     };
   },

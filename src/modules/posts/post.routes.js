@@ -9,6 +9,7 @@ routes.post('/', authJwt, validate(postValidation.createPost),postController.cre
 routes.get('/:id',postController.getPostById );
 routes.get('/', postController.getPostsList);
 routes.patch('/:id', authJwt, validate(postValidation.updatePost),postController.updatePost);
+//routes.patch('/:id', validate(postValidation.updatePost),postController.updatePost);
 routes.delete('/:id', authJwt, postController.removePostById);
 
 export default routes;

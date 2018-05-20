@@ -13,7 +13,7 @@ export async function createPost(req, res){
 
 export async function getPostById(req, res){
 	try{
-		const post = await Post.findById(req.params.id);
+		const post = await Post.findById(req.params.id).populate('user');
 		return res.status(HTTPStatus.OK).json(post);
 	}catch(e){
 		return res.status(HTTPStatus.EXPECTATION_FAILED).json(e);
@@ -24,7 +24,7 @@ export async function getPostsList(req, res){
 	const limit = parseInt(req.query.limit,0);
 	const skip = parseInt(req.query.skip,0);
 	try{
-		const posts = await Post.list({skip, limit});
+		const posts = await Post.list({skip, limit}).populate('user');
 		return res.status(HTTPStatus.OK).json(posts);
 	}catch(e){
 		return res.status(HTTPStatus.EXPECTATION_FAILED).json(e);
@@ -33,9 +33,9 @@ export async function getPostsList(req, res){
 
 export async function updatePost(req, res){
 	try{
-		const post = await Post.findById(res.params.id);
+		const post = await Post.findById(req.params.id);
 		//Control right on the post
-		if(!post.user.equals(req.user_id)){ //Post user = currentUser
+		if(!post.user.equals(req.user._id)){ //Post user = currentUser
 			return res.sendStatus(HTTPStatus.UNAUTHORIZED);
 		}
 		Object.keys(req.body).forEach(key => {
@@ -43,6 +43,7 @@ export async function updatePost(req, res){
 		}); //Object to array
 		return res.status(HTTPStatus.OK).json(await post.save()); //Persist in the database
 	}catch(e){
+		console.log(e);
 		return res.status(HTTPStatus.EXPECTATION_FAILED).json(e);
 	}
 }
