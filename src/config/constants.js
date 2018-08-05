@@ -8,7 +8,8 @@ const testConfig = {
 };
 
 const productionConfig = {
-	MONGO_URL: 'mongodb://localhost/growthapi-prod',
+	MONGO_URL: 'mongodb://localhost/blogAPI-dev',
+	JWT_SECRET: 'secretfordev',
 };
 
 const defaultConfig = {
@@ -17,6 +18,7 @@ const defaultConfig = {
 };
 
 function envConfig(env){
+	console.log(env);
 	switch (env){
 		case 'development':
 		return devConfig;
