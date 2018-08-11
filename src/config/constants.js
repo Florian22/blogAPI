@@ -9,7 +9,7 @@ const testConfig = {
 
 const productionConfig = {
 	MONGO_URL: 'mongodb://localhost/blogAPI-dev',
-	JWT_SECRET: 'secretfordev',
+	JWT_SECRET: '|DUjA%16*0YJ0+S',
 };
 
 const defaultConfig = {
