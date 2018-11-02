@@ -1,5 +1,6 @@
 import passport from 'passport';
 import LocalStrategy from 'passport-local';
+import moment from "moment";
 import {Strategy as JWTStrategy, ExtractJwt} from 'passport-jwt';
 
 import User from '../modules/users/user.model';
@@ -26,10 +27,16 @@ const localStrategy = new LocalStrategy(localOptions, async (email,password,done
 
 //JWT Strategy
 const jwtOptions = {
-	jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),//fromAuthHeaderWithScheme('authorization'),
+	jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
 	secretOrKey: constants.JWT_SECRET,
+	expiresIn:  "1h",
 };
 
+/*
+audience: {
+		exp: moment().utc().add({ hours: 6 }).unix(),
+	},
+*/
 const jwtStrategy = new JWTStrategy(jwtOptions, async(payload,done)=>{
 	try{
 		const user = await User.findById(payload._id);

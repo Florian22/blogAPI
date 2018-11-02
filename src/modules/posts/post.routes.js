@@ -9,7 +9,10 @@ routes.post('/', authJwt, validate(postValidation.createPost),postController.cre
 routes.get('/:id',postController.getPostById );
 routes.get('/', postController.getPostsList);
 routes.patch('/:id', authJwt, validate(postValidation.updatePost),postController.updatePost);
-//routes.patch('/:id', validate(postValidation.updatePost),postController.updatePost);
-routes.delete('/:id', authJwt, postController.removePostById);
-
+routes.delete('/:id', authJwt, postController.removePost);
+/*routes.delete('/:id', authJwt, (req,res) => {
+    console.log(req);
+    console.log(res);
+	res.send('Delete world!');
+});*/
 export default routes;

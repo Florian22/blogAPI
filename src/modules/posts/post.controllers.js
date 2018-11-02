@@ -48,11 +48,10 @@ export async function updatePost(req, res){
 	}
 }
 
-export async function removePostById(req, res){
+export async function removePost(req, res){
 	try{
-		const post = await Post.findById(res.params.id);
-		//Control right on the post
-		if(!post.user.equals(req.user_id)){ //Post user = currentUser
+		const post = await Post.findById(req.params.id);
+		if(!post.user.equals(req.user._id)){ //Post user = currentUser
 			return res.sendStatus(HTTPStatus.UNAUTHORIZED);
 		}
 		await post.remove();

@@ -13,13 +13,6 @@ app.get('/', (req,res) => {
 	res.send('Hello world!');
 });
 
-app.get('/thibault', (req,res) => {
-	var json = `{
-		"message": "Hello"
-	}`;
-	res.send(json);
-});
-
 apiRoutes(app);
 
 app.listen(constants.PORT, err => {

@@ -8,7 +8,7 @@ const testConfig = {
 };
 
 const productionConfig = {
-	MONGO_URL: 'mongodb://localhost/blogAPI-dev',
+	MONGO_URL: 'mongodb://localhost/blogAPI-prd',
 	JWT_SECRET: '|DUjA%16*0YJ0+S',
 };
 
